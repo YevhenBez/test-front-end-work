@@ -1,6 +1,4 @@
-
-
-const Customers = () => {
+const OtherPages = () => {
   
   return (
     <div
@@ -12,10 +10,10 @@ const Customers = () => {
         color: '#010101',
       }}
     >
-        <h1>Здесь будут контакты клиентов</h1>
+        <h2>The development of these pages is not included in this test task.</h2>
       
     </div>
   );
 };
 
-export default Customers;
+export default OtherPages;
