@@ -1,10 +1,13 @@
 .ul {
     margin-top: 34px;
     display: block;
-    gap: 30px;
     font-size: 35px;
     list-style-type: none;
     padding-left: 0px;
+}
+
+.ul__li {
+    margin-bottom: 15px;
 }
 
 .ul__navLink {
