@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import css from '../../components/navigation/css/navigation.module.css';
+import sprite from '../../img/svg/sprite-icon.svg';
 
 const Navigation = () => {
   return (
@@ -7,7 +8,12 @@ const Navigation = () => {
       <ul className={css.ul}>
         <li>
           <NavLink to="/other" className={css.ul__navLink}>
-            <button type="button" className={css.ul__navLink__btn}>Dashboard</button>
+            <button type="button" className={css.ul__navLink__btn}>
+              <svg width="24" height="24" className={css.ul__navLink__btn__bgnSvg}>
+                <use xlinkHref={`${sprite}#key-square`} />
+              </svg>
+              Dashboard
+            </button>
           </NavLink>
         </li>
         <li>
