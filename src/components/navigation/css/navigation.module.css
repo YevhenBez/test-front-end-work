@@ -10,7 +10,7 @@
     margin-bottom: 15px;
 }
 
-.ul__navLink {
+.ul__li__navLink {
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -22,7 +22,7 @@
     
 }
 
-.ul__navLink__btn {
+.ul__li__navLink__btn {
     position: relative;
     width: 250px;
     text-align: left;
@@ -38,7 +38,7 @@
     background-color: #FFFFFF;
 }
 
-.ul__navLink__btn__bgnSvg {
+.ul__li__navLink__btn__bgnSvg {
     position: absolute;
     right: 215px;
     top: 50%;
@@ -46,25 +46,25 @@
     filter: invert(63%) sepia(27%) saturate(248%) hue-rotate(192deg) brightness(91%) contrast(92%);
 }
 
-.ul__navLink__btn:hover .ul__navLink__btn__bgnSvg {
+.ul__li__navLink__btn:hover .ul__li__navLink__btn__bgnSvg {
     filter: invert(100%) sepia(0%) saturate(631%) hue-rotate(196deg) brightness(408%) contrast(101%);
 }
 
-.ul__navLink__btn:hover {
+.ul__li__navLink__btn:hover {
     color: white;
     background-color: green;
 }
 
-.ul__navLink__btn:active .ul__navLink__btn__bgnSvg {
+.ul__li__navLink__btn:active .ul__li__navLink__btn__bgnSvg {
     filter: invert(100%) sepia(0%) saturate(631%) hue-rotate(196deg) brightness(408%) contrast(101%);
 }
 
-.ul__navLink__btn:focus .ul__navLink__btn__bgnSvg {
+.ul__li__navLink__btn:focus .ul__li__navLink__btn__bgnSvg {
     filter: invert(100%) sepia(0%) saturate(631%) hue-rotate(196deg) brightness(408%) contrast(101%);
 }
 
-.ul__navLink__btn:active,
-.ul__navLink__btn:focus {
+.ul__li__navLink__btn:active,
+.ul__li__navLink__btn:focus {
     color: white;
     background-color: #5932EA;
 }
