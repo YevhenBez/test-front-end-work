@@ -18,7 +18,12 @@ const Navigation = () => {
         </li>
         <li>
           <NavLink to="/other" className={css.ul__navLink}>
-            <button type="button" className={css.ul__navLink__btn}>Product</button>
+            <button type="button" className={css.ul__navLink__btn}>
+              <svg width="24" height="24" className={css.ul__navLink__btn__bgnSvg}>
+                <use xlinkHref={`${sprite}#volumetric-square`} />
+              </svg>
+              Product
+            </button>
           </NavLink>
         </li>
         <li>
