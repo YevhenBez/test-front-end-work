@@ -23,6 +23,9 @@ const Navigation = () => {
                 <use xlinkHref={`${sprite}#volumetric-square`} />
               </svg>
               Product
+              <svg width="16" height="16" className={css.ul__li__navLink__btn__endSvg}>
+                <use xlinkHref={`${sprite}#chevron-right`} />
+              </svg>
             </button>
           </NavLink>
         </li>
