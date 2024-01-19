@@ -57,7 +57,15 @@ const Navigation = () => {
         </li>
         <li className={css.ul__li}>
           <NavLink to="/other" className={css.ul__li__navLink}>
-            <button type="button" className={css.ul__li__navLink__btn}>Promote</button>
+            <button type="button" className={css.ul__li__navLink__btn}>
+              <svg width="24" height="24" className={css.ul__li__navLink__btn__bgnSvg}>
+                <use xlinkHref={`${sprite}#discount-shape`} />
+              </svg>
+              Promote
+              <svg width="16" height="16" className={css.ul__li__navLink__btn__endSvg}>
+                <use xlinkHref={`${sprite}#chevron-right`} />
+              </svg>
+            </button>
           </NavLink>
         </li>
         <li>
