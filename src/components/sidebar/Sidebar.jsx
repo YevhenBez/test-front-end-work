@@ -2,6 +2,7 @@ import Navigation from '../../components/navigation';
 import { Link } from 'react-router-dom';
 import sprite from '../../img/svg/sprite-icon.svg';
 import css from '../../components/sidebar/css/sidebar.module.css';
+import userPhoto from '../../img/jpg/userPhoto.jpg';
 
 const Sidebar = () => {
   return (
@@ -16,6 +17,13 @@ const Sidebar = () => {
             </div>
         </Link>
       <Navigation />
+      <div className={css.boxSidebar__user}>
+        <img src={userPhoto} alt="user" width={42} height={42}/>
+        <div>
+          <p className={css.boxSidebar__user__name}>Evano</p>
+          <p className={css.boxSidebar__user__position}>Project Manager</p>
+        </div>
+      </div>
     </div>
   );
 };
