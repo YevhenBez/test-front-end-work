@@ -2,15 +2,16 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../../components/sidebar';
 import css from '../../components/layout/css/layout.module.css';
+import helloPhoto from '../../img/jpg/helloEvano.jpg';
 
 const Layout = () => {
   return (
     <div className={css.layoutPage}>
        
-              <Sidebar />
+              <div className={css.layoutPage__sidebar}><Sidebar /></div>
           <div>
-                  <header >
-                      <p>Этот абзац тестовый сюда просто вставлю содержимое header </p>
+                  <header className={css.layoutPage__header}>
+                      <img src={helloPhoto} alt="hello" width={176} height={36}/>
                   </header>
           
        

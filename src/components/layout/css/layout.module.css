@@ -1,3 +1,12 @@
 .layoutPage {
     display: flex;
 }
+
+.layoutPage__sidebar {
+    z-index: 1;
+}
+
+.layoutPage__header {
+    padding: 41px 0px 51px 71px;
+    background-color: rgba(247, 249, 249, 0.985);
+}
