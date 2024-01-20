@@ -7,6 +7,7 @@
 }
 
 .layoutPage__header {
+    width: 2000px;
     padding: 41px 0px 51px 71px;
     background-color: rgba(247, 249, 249, 0.985);
 }
