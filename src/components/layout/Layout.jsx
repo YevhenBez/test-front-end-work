@@ -9,8 +9,8 @@ const Layout = () => {
     <div className={css.layoutPage}>
        
               <div className={css.layoutPage__sidebar}><Sidebar /></div>
-          <div>
-                  <header className={css.layoutPage__header}>
+          <div className={css.layoutPage__container}>
+                  <header className={css.layoutPage__container__header}>
                       <img src={helloPhoto} alt="hello" width={176} height={36}/>
                   </header>
           
