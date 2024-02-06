@@ -1,27 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import listCustomers from '../../path/to/customers.json';
 import css from '../../pages/customers/css/customers.module.css';
 import sprite from '../../img/svg/sprite-icon.svg';
 
 const Customers = () => {
+  const itemsPerPage = 1;
 
   const [filter, setFilter] = useState('');
   const [isFocused, setIsFocused] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages ] = useState(Math.ceil(listCustomers.length / itemsPerPage));
+  
+  let maxPageNumbersToShow;
+  
+  const filteredCustomers = useMemo(() => {
+  return listCustomers.filter(row => row.name.toLowerCase().includes(filter.toLowerCase()) || row.company.toLowerCase().includes(filter.toLowerCase()) || row.phone.includes(filter) || row.email.toLowerCase().includes(filter.toLowerCase()) || row.country.toLowerCase().includes(filter.toLowerCase()) || row.status.includes(filter));
+}, [filter]);
 
-  const filteredCustomers = listCustomers.filter(row => row.name.toLowerCase().includes(filter.toLowerCase()) || row.company.toLowerCase().includes(filter.toLowerCase()) || row.phone.includes(filter) || row.email.toLowerCase().includes(filter.toLowerCase()) || row.country.toLowerCase().includes(filter.toLowerCase()) || row.status.includes(filter));
+// Обновление totalPages
+   useEffect(() => {
+      const newTotalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
+      setTotalPages(newTotalPages);
+        
+  }, [filter, filteredCustomers, itemsPerPage]);
+
+// Обновление currentPage
+  useEffect(() => {
+
+
+    if (currentPage > totalPages) {
+    setCurrentPage(1);
+    }
+    
+  }, [currentPage, itemsPerPage, filteredCustomers, totalPages]);
+  
+   const displayItems = useMemo(() => {
+  return filteredCustomers.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+}, [currentPage, itemsPerPage, filteredCustomers]);
+  
+
+  maxPageNumbersToShow = totalPages > 3 ? 4 : totalPages;
+  
+    
+    const handleClick = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
+    
+    const generatePageNumbers = () => {
+      const pageNumbers = [];
+      let startPage = currentPage - 2;
+      let endPage = currentPage + 1;
+    
+      if (startPage <= 0) {
+        startPage = 1;
+        endPage = startPage + maxPageNumbersToShow - 1;
+      }
+    
+      if (endPage > totalPages) {
+        endPage = totalPages;
+        startPage = endPage - maxPageNumbersToShow + 1;
+      }
+    
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+      }
+    
+      return pageNumbers;
+    };
+  
   
   const handleChangeName = (event) => {
-    setFilter(event.currentTarget.value)
-  };
+    setFilter(event.currentTarget.value);
+    setCurrentPage(1);
 
+    if (event.currentTarget.value !== "Active") {
+        setIsFocused(true);
+    };
+
+    if (event.currentTarget.value === "Active") {
+        setIsFocused(false);
+    };
+
+    
+
+  };
   
 
   return (
     <div className={css.customersContainer}>
       <div className={css.customersContainer__filterBoard}>
         <div className={css.customersContainer__filterBoard__btns}>
-          <button className={isFocused ? css.customersContainer__filterBoard__btns__all : css.customersContainer__filterBoard__btns__allBlur} onClick={() => setFilter('') } onFocus={() => setIsFocused(true)} >All Customers</button>
-          <button className={!isFocused ? css.customersContainer__filterBoard__btns__active : css.customersContainer__filterBoard__btns__activeBlur} onClick={() => setFilter("Active")} onFocus={() => setIsFocused(false)}>Active Members</button>
+          <button className={isFocused ? css.customersContainer__filterBoard__btns__all : css.customersContainer__filterBoard__btns__allBlur} onClick={() => { setFilter(''); setCurrentPage(1) } } onFocus={() => setIsFocused(true)} >All Customers</button>
+          <button className={!isFocused ? css.customersContainer__filterBoard__btns__active : css.customersContainer__filterBoard__btns__activeBlur} onClick={() => { setFilter("Active"); setCurrentPage(1) }} onFocus={() => setIsFocused(false)}>Active Members</button>
         </div>
         <div className={css.customersContainer__filterBoard__inputBox}>
           <svg width="24" height="24" className={css.customersContainer__filterBoard__inputBox__svg}>
@@ -46,7 +116,7 @@ const Customers = () => {
   
               {filter ?
               <tbody>
-                  {filteredCustomers.map(filteredCustomer => (
+                  {displayItems.map(filteredCustomer => (
                           <tr key={filteredCustomer.id}>
                               <td></td>
                               <td className={css.customersContainer__table__td}>{filteredCustomer.name}</td>
@@ -61,7 +131,7 @@ const Customers = () => {
               </tbody>
               :
               <tbody>
-                  {listCustomers.map(listCustomer => (
+                  {displayItems.map(listCustomer => (
                           <tr key={listCustomer.id}>
                               <td></td>
                               <td className={css.customersContainer__table__td}>{listCustomer.name}</td>
@@ -74,7 +144,27 @@ const Customers = () => {
                           </tr>
                       ))}
               </tbody>}
-          </table>
+      </table>
+      <div>
+        <button onClick={() => handleClick(currentPage - 1)} disabled={currentPage === 1}>Назад</button>
+      {currentPage > 3 && (totalPages > 4 &&(<button onClick={() => handleClick(1)}>1</button>))}
+      {currentPage > 3 &&  (totalPages > 4 &&(<span>...</span>))}
+      {generatePageNumbers().map((pageNumber) => (
+        <button
+          key={pageNumber}
+          onClick={() => handleClick(pageNumber)}
+          style={{ backgroundColor: pageNumber === currentPage ? 'blue' : 'grey' }}
+        >
+          {pageNumber}
+        </button>
+      ))}
+      
+      {currentPage < totalPages - 1 && (totalPages > 4 &&(<span>...</span>))}
+      {currentPage < totalPages - 1  && ( totalPages > 4 &&
+        (<button onClick={() => handleClick(totalPages)}>{totalPages}</button>)
+        )}
+        <button onClick={() => handleClick(currentPage + 1)} disabled={currentPage === totalPages}>Вперед</button>
+    </div>
     </div>
   );
 };
