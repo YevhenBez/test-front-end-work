@@ -1,5 +1,4 @@
 const OtherPages = () => {
-  
   return (
     <div
       style={{
@@ -10,8 +9,7 @@ const OtherPages = () => {
         color: '#010101',
       }}
     >
-        <h2>The development of these pages is not included in this test task.</h2>
-      
+      <h2>The development of these pages is not included in this test task.</h2>
     </div>
   );
 };
