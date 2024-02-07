@@ -4,7 +4,7 @@ import css from '../../pages/customers/css/customers.module.css';
 import sprite from '../../img/svg/sprite-icon.svg';
 
 const Customers = () => {
-  const itemsPerPage = 1;
+  const itemsPerPage = 8;
 
   const [filter, setFilter] = useState('');
   const [isFocused, setIsFocused] = useState(true);
